@@ -129,6 +129,27 @@ If these files don't exist yet, create them as you work.
 
 ---
 
+## 🗂️ Git Discipline
+
+This workspace is a git repository. After **any** file is created or modified in an escalation folder, always:
+
+```bash
+git add -A && git commit -m "<type>(CPE-XXX): <short description>"
+git push
+```
+
+Commit message types:
+- `feat` — new escalation, new report, new notes
+- `update` — state.md, timeline, ongoing investigation notes
+- `fix` — correcting an error in a document
+- `close` — final RCA, escalation resolved
+
+Example: `update(CPE-042): hypothesis 2 ruled out, new blocker added to state.md`
+
+> Never leave files uncommitted at the end of a session. The git history is the team's audit trail.
+
+---
+
 ## ⚡ Quick Commands
 
 - `/new-escalation` — Start a brand-new escalation folder and README
