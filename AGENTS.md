@@ -10,7 +10,15 @@ You are operating inside the **NetApp Escalation Tiger Team workspace**. This di
 
 > "👋 Welcome to the NetApp Tiger Team Escalation Hub! Which CPE case are we working on today? (e.g., `CPE-042-Acme`)"
 
-Do not proceed with any other action until the engineer provides a CPE case number. Once provided, `ls` that folder and read any existing files to get up to speed before responding further.
+Do not proceed with any other action until the engineer provides a CPE case number. Once provided:
+
+1. `ls` the relevant `CPE-xxx-Customer` folder
+2. **Read `state.md` first** — this is the live investigation state. If it exists, summarise where the team left off before doing anything else
+3. Read `README.md` and `timeline.md` for full context
+4. Then read any logs, configs, or notes relevant to the current focus area
+5. Tell the engineer: *"Here's where we left off…"* and propose the immediate next action
+
+If `state.md` does not exist, create it as part of onboarding the new escalation.
 
 ---
 
@@ -20,9 +28,11 @@ Do not proceed with any other action until the engineer provides a CPE case numb
 
 When the user mentions or opens an escalation, always:
 1. `ls` the relevant `CPE-xxx-Customer` folder to understand what files exist
-2. Read any existing notes, logs, or reports before responding
-3. Engage the appropriate specialist skill(s) for the technology involved
-4. Keep a running mental model of the customer impact and timeline
+2. **Read `state.md` first** — it holds the live investigation state, current hypotheses, and next steps
+3. Read `README.md` and `timeline.md` for background and chronology
+4. Read any logs, configs, or reports relevant to the current focus area
+5. Engage the appropriate specialist skill(s) for the technology involved
+6. **Keep `state.md` updated** after every meaningful finding, decision, or action taken
 
 ---
 
@@ -49,6 +59,7 @@ Each escalation folder `CPE-xxx-Customer/` may contain:
 
 ```
 CPE-042-Acme/
+├── state.md            # ⭐ LIVE investigation state — always read this first
 ├── README.md           # Escalation summary & current status
 ├── timeline.md         # Chronological event log
 ├── logs/               # Raw logs from customer systems
@@ -60,7 +71,49 @@ CPE-042-Acme/
 └── notes/              # Engineer working notes
 ```
 
-If these don't exist yet, create them as you work.
+### `state.md` — The Investigation State File
+
+`state.md` is the single source of truth for *where the investigation is right now*. It must be updated after every meaningful action so any engineer can pick up the case without asking "where did we leave off?"
+
+Required sections:
+
+```markdown
+# Escalation State — CPE-XXX-Customer
+_Last updated: YYYY-MM-DD HH:MM UTC — [Engineer/Role]_
+
+## 🔴 Current Status
+**Phase:** [Triage | Investigation | Workaround Applied | Pending Customer | Pending Engineering | Resolved]
+**Severity:** [P1 | P2 | P3 | P4]
+**Active Specialists:** [e.g., ONTAP Specialist, Tiger Team Lead]
+
+## 🧠 What We Know (Mental Model)
+- Concise bullet-point summary of confirmed facts
+- Include versions, topology, symptoms, and confirmed non-causes
+
+## ✅ Completed Actions
+- [x] Action taken — outcome — timestamp
+
+## ⏳ In Progress
+- [ ] What is actively being worked right now
+
+## 🚧 Blockers
+- What are we waiting on? From whom? By when?
+
+## 🔜 Next Steps (ordered)
+1. Immediate next action
+2. Follow-on action
+3. ...
+
+## 💡 Hypotheses
+| # | Hypothesis | Status | Supporting Evidence |
+|---|-----------|--------|--------------------|
+| 1 | ... | Likely / Unlikely / Ruled Out | ... |
+
+## 📞 Next Customer Update Due
+YYYY-MM-DD HH:MM UTC
+```
+
+If these files don't exist yet, create them as you work.
 
 ---
 
@@ -68,9 +121,11 @@ If these don't exist yet, create them as you work.
 
 1. **Triage** → Run `/triage` or ask the Tiger Team Lead to assess severity and assign specialists
 2. **Investigate** → Load relevant specialist skills, read logs/configs, identify root cause
-3. **Track** → Update `timeline.md` with every significant finding or action
+3. **Track** → Update both `state.md` (current focus/next steps) and `timeline.md` (event log) after every meaningful action
 4. **Document** → Use the Documentation Expert to produce reports for the customer/management
-5. **Close** → Generate a final RCA report and close the escalation
+5. **Close** → Generate a final RCA report, mark `state.md` as Resolved, and close the escalation
+
+> 💡 **State discipline:** Treat `state.md` like a whiteboard that is always visible to the whole team. Before ending a session, always update it so the next engineer can orient in under 60 seconds.
 
 ---
 

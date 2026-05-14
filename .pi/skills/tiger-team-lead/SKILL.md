@@ -99,13 +99,63 @@ When starting a new escalation, create this structure:
 mkdir -p CPE-XXX-Customer/{logs,configs,reports,notes}
 ```
 
-Then create `CPE-XXX-Customer/README.md` with:
+Then create the following files:
+
+### `CPE-XXX-Customer/README.md`
 - Case number, customer name, SE/AM contact
 - Products and software versions involved
 - Problem statement
 - Current severity and business impact
 - Status (Open/In Progress/Pending Customer/Resolved)
 - Key contacts (customer + NetApp side)
+
+### `CPE-XXX-Customer/state.md` — Create immediately, update constantly
+
+This is the most important file in the escalation. It captures live investigation state so any engineer can resume without losing context. Create it at case open and update it after **every meaningful action**.
+
+```markdown
+# Escalation State — CPE-XXX-Customer
+_Last updated: YYYY-MM-DD HH:MM UTC — Tiger Team Lead_
+
+## 🔴 Current Status
+**Phase:** Triage
+**Severity:** P[1-4]
+**Active Specialists:** Tiger Team Lead
+
+## 🧠 What We Know (Mental Model)
+- [Fill in as facts are confirmed]
+
+## ✅ Completed Actions
+- [x] Escalation opened, README created — [timestamp]
+
+## ⏳ In Progress
+- [ ] Initial triage and severity assessment
+
+## 🚧 Blockers
+- None yet
+
+## 🔜 Next Steps (ordered)
+1. Collect customer environment details and logs
+2. Load appropriate specialist skill(s)
+3. Form initial hypotheses
+
+## 💡 Hypotheses
+| # | Hypothesis | Status | Supporting Evidence |
+|---|-----------|--------|--------------------|
+| 1 | TBD | Unconfirmed | None yet |
+
+## 📞 Next Customer Update Due
+TBD — set after initial triage
+```
+
+**When to update `state.md`:**
+- After any log analysis that produces a finding
+- When a hypothesis is confirmed, ruled out, or added
+- When a blocker is identified or cleared
+- When a specialist is engaged or hands off
+- When a workaround is tested
+- Before ending any work session (so the next engineer can orient in < 60 seconds)
+- When the customer update is sent (record it in Completed Actions)
 
 ---
 
