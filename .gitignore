@@ -1,0 +1,15 @@
+# Active escalation case folders — never commit customer data
+CPE-*/
+
+# macOS
+.DS_Store
+**/.DS_Store
+
+# pi session files
+.pi/sessions/
+.pi/cache/
+
+# Editor
+*.swp
+*.swo
+.vscode/
