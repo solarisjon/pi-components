@@ -1,0 +1,22 @@
+tiger-team:
+  - netapp-tigers.tiger-team-lead
+  - netapp-tigers.ontap-specialist
+  - netapp-tigers.solidfire-specialist
+  - netapp-tigers.storagegrid-specialist
+  - netapp-tigers.hardware-specialist
+  - netapp-tigers.documentation-expert
+
+investigators:
+  - netapp-tigers.ontap-specialist
+  - netapp-tigers.solidfire-specialist
+  - netapp-tigers.storagegrid-specialist
+  - netapp-tigers.hardware-specialist
+
+triage:
+  - netapp-tigers.tiger-team-lead
+  - netapp-tigers.ontap-specialist
+  - netapp-tigers.hardware-specialist
+
+docs:
+  - netapp-tigers.tiger-team-lead
+  - netapp-tigers.documentation-expert

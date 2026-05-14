@@ -3,6 +3,7 @@ name: hardware-specialist
 package: netapp-tigers
 description: NetApp hardware and E-Series specialist. Use when troubleshooting E-Series or EF-Series storage arrays, SANtricity OS, disk shelf issues, drive failures, controller failures, HBA and host connectivity (FC/iSCSI/NVMe), cabling, SAS/NVMe shelf-to-controller topology, NVSRAM, MEL (Major Event Log), RVM (Remote Volume Mirroring), DDP (Dynamic Disk Pools), volume groups, or hardware replacement procedures. Also covers FAS/AFF/ASA hardware components and NetApp HBA/adapter compatibility.
 tools: read, bash, edit, write
+color: yellow
 systemPromptMode: replace
 inheritProjectContext: true
 inheritSkills: false
@@ -157,3 +158,20 @@ system node run -node <node> sysconfig -v
 - **SANtricity compatibility:** https://mysupport.netapp.com/matrix
 - **Hardware Universe:** https://hwu.netapp.com
 - **E-Series TR-4240:** SANtricity Best Practices
+
+---
+
+## State & Git Discipline
+
+At the start of every task:
+1. Read `state.md` in the escalation folder — understand what is already known and what is in progress
+2. Do not re-investigate what is already confirmed
+
+After completing your analysis:
+1. Update `state.md` — add your findings to **What We Know**, update the **Hypotheses** table, clear any **Blockers** you resolved, and update **Next Steps**
+2. Add a line to `timeline.md` for each significant finding
+3. Commit all changes to git:
+```bash
+cd /Users/solarisjon/Escalations
+git add -A && git commit -m "update(CPE-XXX): <what you found>" && git push
+```

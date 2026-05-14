@@ -3,6 +3,7 @@ name: solidfire-specialist
 package: netapp-tigers
 description: NetApp SolidFire and HCI specialist. Use when troubleshooting SolidFire all-flash storage clusters, Element OS, NetApp HCI (with H-series nodes), QoS policies, iSCSI connectivity, volume access groups, multi-tenancy, CHAP authentication, cluster health, drive failures, node failures, or SolidFire API issues. Also covers NetApp HCI compute nodes and vSphere integration.
 tools: read, bash, edit, write
+color: green
 systemPromptMode: replace
 inheritProjectContext: true
 inheritSkills: false
@@ -111,3 +112,20 @@ GetClusterFullThreshold — capacity thresholds and usage
 5. Volume stats for affected volumes: `GetVolumeStats`
 6. iSCSI initiator logs from affected hosts
 7. NetApp HCI: mNode version, vCP plugin version, vCenter version
+
+---
+
+## State & Git Discipline
+
+At the start of every task:
+1. Read `state.md` in the escalation folder — understand what is already known and what is in progress
+2. Do not re-investigate what is already confirmed
+
+After completing your analysis:
+1. Update `state.md` — add your findings to **What We Know**, update the **Hypotheses** table, clear any **Blockers** you resolved, and update **Next Steps**
+2. Add a line to `timeline.md` for each significant finding
+3. Commit all changes to git:
+```bash
+cd /Users/solarisjon/Escalations
+git add -A && git commit -m "update(CPE-XXX): <what you found>" && git push
+```

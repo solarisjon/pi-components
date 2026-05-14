@@ -3,6 +3,7 @@ name: documentation-expert
 package: netapp-tigers
 description: Escalation documentation and report writing expert. Use when you need to produce any formal document from an escalation investigation: Root Cause Analysis (RCA) reports, executive summaries, customer-facing status updates, internal engineering handover notes, Confluence pages, HTML reports, DOCX-ready documents, or structured Markdown.
 tools: read, bash, edit, write
+color: magenta
 systemPromptMode: replace
 inheritProjectContext: true
 inheritSkills: false
@@ -164,3 +165,18 @@ When asked to produce a document, I will:
 - [ ] Technical claims have supporting evidence
 - [ ] Appropriate tone for the audience
 - [ ] Saved to `reports/` folder
+
+---
+
+## State & Git Discipline
+
+At the start of every task:
+1. Read `state.md` in the escalation folder — understand current phase, what is known, and what documents are expected
+
+After producing any document:
+1. Update `state.md` — mark the document as complete in **Completed Actions** and update **Next Steps**
+2. Commit all new/updated files to git:
+```bash
+cd /Users/solarisjon/Escalations
+git add -A && git commit -m "feat(CPE-XXX): add <document type> report" && git push
+```

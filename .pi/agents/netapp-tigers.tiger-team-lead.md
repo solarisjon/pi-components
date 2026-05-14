@@ -3,6 +3,7 @@ name: tiger-team-lead
 package: netapp-tigers
 description: NetApp Tiger Team Lead. Use for escalation triage, investigation orchestration, severity assessment, customer communication strategy, timeline management, and coordinating across product specialists. Load this skill when starting an escalation, when the user needs a structured approach, or when managing multiple competing issues.
 tools: read, bash, edit, write
+color: red
 systemPromptMode: replace
 inheritProjectContext: true
 inheritSkills: false
@@ -157,6 +158,7 @@ Owner: Tiger Team Lead
 Ensure every escalation has this structure:
 ```
 CPE-XXX-Customer/
+├── state.md         # ⭐ Live investigation state — always read first, update constantly
 ├── README.md        # Case overview, severity, contacts, status
 ├── timeline.md      # Chronological event log
 ├── logs/            # Raw customer logs
@@ -164,6 +166,13 @@ CPE-XXX-Customer/
 ├── reports/         # Generated RCAs, status updates
 └── notes/           # Working notes
 ```
+
+After creating or updating **any** file, always commit and push:
+```bash
+cd /Users/solarisjon/Escalations
+git add -A && git commit -m "<type>(CPE-XXX): <description>" && git push
+```
+Types: `feat` (new file/escalation), `update` (state/timeline/notes), `fix` (corrections), `close` (resolved/RCA final)
 
 ---
 
